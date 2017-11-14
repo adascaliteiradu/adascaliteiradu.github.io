@@ -18,6 +18,7 @@
 		.container {
 			margin-left: 10px;
 			margin-right: 10px;
+			margin-bottom: 10px;
 		}
 		.progressbardet {
 			width: 100%;
@@ -28,11 +29,49 @@
 		.progressbar {
 			height: 24px;
 		}
+		.mpadding {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+		a {
+			text-decoration: none;
+		}
+		label {
+			font-weight: bold;
+		}
 	</style>
 </head>
 <body>
 	<div class="w3-teal" style="height: 200px">
-		
+		<div class="w3-container w3-half w3-row">
+			<div class="w3-quarter">
+				<img src="https://www.w3schools.com/w3css/img_avatar3.png" class="w3-circle" style="max-width: 175px;">
+			</div>
+			<div class="w3-rest w3-padding">
+				<h1><b>Radu Adascalitei</b></h1>
+				<h4>Software developer</h4>
+				<h4>Computer Science Engineer</h4>
+			</div>
+		</div>
+		<div class="w3-container w3-right">
+			<div class="w3-text-white">
+				<h4><b>Contact</b></h4>
+				<p>
+					<div>
+						<label><span class="fa fa-envelope"></span> Email: </label> 
+						<a href="mailto:adascalitei.radu@live.com">adascalitei.radu@live.com</a>
+					</div>
+					<div>
+						<label><span class="fa fa-phone"></span> Phone:</label>
+						<a href="tel:+40735157368">(+40) 735 157 368</a>
+					</div>
+					<div>
+						<label><span class="fa fa-linkedin-square"></span> Linkedin:</label>
+						<a href="https://www.linkedin.com/in/radu-adrian-adascalitei-2a236ab1/">linkedin.com/in/radu-adrian-adascalitei-2a236ab1</a>
+					</div>
+				</p>
+			</div>
+		</div>
 	</div>
 	<div class="w3-light-gray">
 		<div class="container">
@@ -44,15 +83,16 @@
 							<div class="w3-quarter">
 								<img src="http://www.softeh.ro/wp-content/themes/softehplus/img/logo.png" class="company-logo">
 							</div>
-							<div class="w3-rest">
+							<div class="w3-rest mpadding">
 								<h3>2016 - Present | S.C. SOFTEH PLUS SRL</h3>
 								<h4>Full stack software developer</h4>
 								<h5><b>Responsabilities</b></h5>
 								<ul class="w3-list">
-									<li>Developing web applications using internal Javascript framework</li>
-									<li>Developing web services to serve multi-purpose applications</li>
-									<li>Designing database structure</li>
-									<li>Optimization of existing database querys</li>
+									<li>Design and develop new solutions for medical industry</li>
+									<li>Develop web applications using .NET and internal Javascript framework</li>
+									<li>Develop web services to fetch data for multiple applications</li>
+									<li>Design database structure</li>
+									<li>Optimization of existing database querys and applications</li>
 								</ul>
 							</div>
 						</div>
@@ -60,13 +100,18 @@
 							<div class="w3-quarter">
 								<img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Sigla_guvernului_Rom%C3%A2niei_versiunea_2016_cu_coroan%C4%83.png" class="company-logo">
 							</div>
-							<div class="w3-rest">
+							<div class="w3-rest mpadding">
 								<h3>2013 | Romanian Government</h3>
 								<h4>Web developer</h4>
-								<h5>Responsabilities</h5>
+								<h5><b>Descripton</b></h5>
 								<p>
-									
+									Participated to then first edition of hackathon organised by Romanian Government in partnership with Microsoft and Bitdifender.
 								</p>
+								<h5><b>Responsabilities</b></h5>
+								<ul class="w3-list">
+									<li>Develop web aplication using PHP framework Codeigniter</li>
+									<li>Design the databased stucture</li>
+								</ul>
 							</div>
 						</div>
 						
@@ -77,7 +122,7 @@
 							<div class="w3-quarter">
 								<img src="http://www.upb.ro/i/content/Sigla_UPB_color.jpg" class="company-logo">
 							</div>
-							<div class="w3-rest">
+							<div class="w3-rest mpadding">
 								<h3>2017 - Present | Politehica Univesity of Bucharest</h3>
 								<h4><b>Master degree</b> - Paralell and Distributed Computer Systems</h4>
 								<h5><b>Courses</b></h5>
@@ -90,7 +135,7 @@
 							<div class="w3-quarter">
 								<img src="http://www.upb.ro/i/content/Sigla_UPB_color.jpg" class="company-logo">
 							</div>
-							<div class="w3-rest">
+							<div class="w3-rest mpadding">
 								<h3>2013 - 2017 | Politehica Univesity of Bucharest</h3>
 								<h4><b>Bachelor degree</b> - Computer Science and Engineering</h4>
 								<h5><b>Courses</b></h5>
@@ -104,7 +149,7 @@
 						<h2 class="w3-center"><span class="fa fa-check-square-o"></span> <b>MY SKILLS</b></h2>
 						<div>
 						<div class="progressbardet">
-								<h5>Programming Languages</h5>
+								<h5>Programming languages</h5>
 								<div class="w3-grey">
 									<div class="w3-container w3-green w3-center progressbar" style="width:89%"></div>
 								</div>
@@ -114,6 +159,7 @@
 								<span class="w3-tag w3-xlarge w3-gray" style="margin-bottom: 5px"><b>C++</b></span>
 								<span class="w3-tag w3-xlarge w3-gray" style="margin-bottom: 5px"><b>C</b></span>
 								<span class="w3-tag w3-xlarge w3-gray" style="margin-bottom: 5px"><b>Java</b></span>
+								<span class="w3-tag w3-xlarge w3-gray" style="margin-bottom: 5px"><b>Android</b></span>
 							</p>
 						</div>
 						<div>
@@ -143,10 +189,74 @@
 								<span class="w3-tag w3-xlarge w3-gray" style="margin-bottom: 5px"><b>Javascript</b></span>
 								<span class="w3-tag w3-xlarge w3-gray" style="margin-bottom: 5px"><b>PHP</b></span>
 								<span class="w3-tag w3-xlarge w3-gray" style="margin-bottom: 5px"><b>NodeJS</b></span>
+								<span class="w3-tag w3-xlarge w3-gray" style="margin-bottom: 5px"><b>Angular JS</b></span>
 							</p>
 						</div>
 						
 					</div>
+				</div>
+
+				<div class="w3-row">
+					<h2><span class="fa fa-tasks"></span> Projects</h2>
+					<div class="w3-card w3-container w3-white mcard">
+						<h3><b>Task management - Web Application</b></h3>
+						<div>
+							<h4><b>Description</b></h4>
+							<p>
+								<ul class="w3-list">
+									<li>Project management</li>	
+									<li>Time tracking</li>
+									<li>Issue and bug tracking</li>
+								</ul>
+							</p>
+						</div>
+						<div>
+							<h4><b>Technologies</b></h4>
+							<p>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>Angular JS</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>PHP</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>Javascript</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>HTML</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>CSS</b></span>
+							</p>
+						</div>
+					</div>
+					<div class="w3-card w3-container w3-white mcard">
+						<h3><b>Socialize and OpenChat</b></h3>
+						<div>
+							<h4><b>Description</b></h4>
+							<p>
+								A real-time chat for smartphones and web-browser. In the Android version it uses Google Push Notification server to fech data in real-time. In the web version it uses WebSocket protocol for the same purpose. 
+							</p>
+						</div>
+						<div>
+							<h4><b>Technologies</b></h4>
+							<p>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>Android</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>PHP</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>Javascript</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>HTML</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>CSS</b></span>
+							</p>
+						</div>
+					</div>
+					<div class="w3-card w3-container w3-white mcard">
+						<h3><b>Game of Life</b></h3>
+						<div>
+							<h4><b>Description</b></h4>
+							<p>
+								A real-time simulation game. The intresting fact about this project is that it simulates an infinite map, where the game runs. It has a human-friendy interface, all made with Java-Swing.
+							</p>
+						</div>
+						<div>
+							<h4><b>Technologies</b></h4>
+							<p>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>Java</b></span>
+								<span class="w3-tag w3-large w3-gray" style="margin-bottom: 5px"><b>Swing</b></span>
+							</p>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>
