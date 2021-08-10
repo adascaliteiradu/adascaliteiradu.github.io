@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "//adascaliteiradu.github.io/static/css/main.a617e044.chunk.css",
+    "main.js": "//adascaliteiradu.github.io/static/js/main.e5ea7f8f.chunk.js",
+    "main.js.map": "//adascaliteiradu.github.io/static/js/main.e5ea7f8f.chunk.js.map",
+    "runtime-main.js": "//adascaliteiradu.github.io/static/js/runtime-main.8ca9cb44.js",
+    "runtime-main.js.map": "//adascaliteiradu.github.io/static/js/runtime-main.8ca9cb44.js.map",
+    "static/js/2.97bbbb3e.chunk.js": "//adascaliteiradu.github.io/static/js/2.97bbbb3e.chunk.js",
+    "static/js/2.97bbbb3e.chunk.js.map": "//adascaliteiradu.github.io/static/js/2.97bbbb3e.chunk.js.map",
+    "static/js/3.f12412ec.chunk.js": "//adascaliteiradu.github.io/static/js/3.f12412ec.chunk.js",
+    "static/js/3.f12412ec.chunk.js.map": "//adascaliteiradu.github.io/static/js/3.f12412ec.chunk.js.map",
+    "index.html": "//adascaliteiradu.github.io/index.html",
+    "static/css/main.a617e044.chunk.css.map": "//adascaliteiradu.github.io/static/css/main.a617e044.chunk.css.map",
+    "static/js/2.97bbbb3e.chunk.js.LICENSE.txt": "//adascaliteiradu.github.io/static/js/2.97bbbb3e.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "//adascaliteiradu.github.io/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8ca9cb44.js",
+    "static/js/2.97bbbb3e.chunk.js",
+    "static/css/main.a617e044.chunk.css",
+    "static/js/main.e5ea7f8f.chunk.js"
+  ]
+}
