@@ -154,6 +154,10 @@ svg.fill {
   border-radius: 8px;
 }
 
+.print-only {
+  display: none;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -173,6 +177,25 @@ svg.fill {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+}
+
+/* Bilingual content: only the active language is shown. */
+html[lang="en"] [lang="ro"],
+html[lang="ro"] [lang="en"] {
+  display: none !important;
+}
+
+main,
+.nav__links,
+.footer {
+  transition: opacity 0.22s ease, transform 0.35s var(--ease);
+}
+
+.lang-switching main,
+.lang-switching .nav__links,
+.lang-switching .footer {
+  opacity: 0;
+  transform: translateY(6px);
 }
 
 /* ==========================================================================
@@ -384,6 +407,55 @@ svg.fill {
   transform: scale(0.9);
 }
 
+.lang-toggle {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  height: 38px;
+  margin-right: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  font: 600 12px/1 var(--font-sans);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+}
+
+.lang-toggle::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  transition: transform 0.45s var(--ease);
+}
+
+html[lang="ro"] .lang-toggle::before {
+  transform: translateX(100%);
+}
+
+.lang-toggle__opt {
+  position: relative;
+  padding: 0 9px;
+  transition: color 0.3s ease;
+}
+
+html[lang="en"] .lang-toggle__opt[data-opt="en"],
+html[lang="ro"] .lang-toggle__opt[data-opt="ro"] {
+  color: var(--on-accent);
+}
+
+.lang-toggle:hover {
+  border-color: var(--accent);
+}
+
 .theme-toggle svg {
   grid-area: 1 / 1;
   transition: transform 0.6s var(--ease), opacity 0.4s ease;
@@ -546,6 +618,18 @@ main,
   white-space: nowrap;
 }
 
+.hero__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.status-pill svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+}
+
 .status-dot {
   position: relative;
   width: 8px;
@@ -667,10 +751,13 @@ main,
   gap: 10px;
   padding: 13px 22px;
   overflow: hidden;
+  border: 0;
   border-radius: 999px;
+  font-family: inherit;
   font-size: 15px;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.25s ease, background-color 0.25s ease;
 }
 
@@ -777,6 +864,11 @@ main,
 
   .hero__avatar {
     order: 2;
+    align-items: center;
+  }
+
+  .hero__pills {
+    flex-direction: column;
     align-items: center;
   }
 
@@ -1126,7 +1218,6 @@ main,
 }
 
 .job__duration:not(:empty) {
-  margin-left: 6px;
   padding: 2px 10px;
   border-radius: 999px;
   background: var(--accent-soft);
@@ -1254,6 +1345,366 @@ main,
 }
 
 /* ==========================================================================
+   About
+   ========================================================================== */
+.about {
+  display: grid;
+  gap: 20px;
+}
+
+.about__text p {
+  color: var(--text-2);
+  font-size: clamp(1.02rem, 1.6vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.about__text p + p {
+  margin-top: 18px;
+}
+
+.about__text strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.facts.card {
+  margin: 0;
+  padding: 6px 22px;
+}
+
+.facts__row {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  padding: 14px 0;
+}
+
+.facts__row + .facts__row {
+  border-top: 1px solid var(--border);
+}
+
+.facts dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 500;
+}
+
+@media (min-width: 860px) {
+  .about {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+}
+
+/* ==========================================================================
+   Roles within one company + highlights
+   ========================================================================== */
+.job__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.roles {
+  position: relative;
+  display: grid;
+  gap: 30px;
+  margin: 24px 0 0;
+  padding: 0 0 0 26px;
+  list-style: none;
+}
+
+.roles::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 6px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--border));
+}
+
+.role {
+  position: relative;
+}
+
+.role::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -26px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.role:first-child::before {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.role__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.role .job__period {
+  margin-top: 6px;
+}
+
+.highlight {
+  position: relative;
+  margin-top: 18px;
+  padding: 14px 16px 14px 50px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--accent-soft), transparent 75%);
+}
+
+.highlight__icon {
+  position: absolute;
+  top: 14px;
+  left: 17px;
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  fill: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.highlight__label {
+  margin-bottom: 4px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* A light sweep runs across each highlight once it scrolls into view. */
+.highlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.js .is-visible .highlight::after {
+  animation: sweep 1.6s var(--ease) 0.7s both;
+}
+
+.js .is-visible .highlight__icon {
+  animation: pop 0.7s var(--ease) 0.5s both;
+}
+
+@keyframes sweep {
+  to { transform: translateX(100%); }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.3;
+    rotate: -45deg;
+  }
+}
+
+/* ==========================================================================
+   Skills
+   ========================================================================== */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.skills__item,
+.edu__item {
+  display: flex;
+}
+
+.skills__item > .card,
+.edu__item > .card {
+  flex: 1;
+}
+
+@media (min-width: 860px) {
+  .skills {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skills__item--wide {
+    grid-column: span 2;
+  }
+}
+
+.skill-card__head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.skill-card__head h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.skill-card__icon,
+.edu-card__icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  flex-shrink: 0;
+  transition: transform 0.5s var(--ease);
+}
+
+.card:hover .skill-card__icon,
+.card:hover .edu-card__icon {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface-strong);
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: border-color 0.25s ease, color 0.25s ease, transform 0.3s var(--ease), box-shadow 0.3s ease;
+}
+
+.chips li:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 8px 18px -10px var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Chips pop in one after another (translate/scale compose with the hover transform). */
+.js .chips li {
+  opacity: 0;
+}
+
+.js .is-visible .chips li {
+  animation: chip-in 0.55s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 55ms + 250ms);
+}
+
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    translate: 0 10px;
+    scale: 0.94;
+  }
+  to {
+    opacity: 1;
+    translate: none;
+    scale: none;
+  }
+}
+
+/* ==========================================================================
+   Education
+   ========================================================================== */
+.edu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.edu-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 8px 16px;
+}
+
+.edu-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+}
+
+.edu-card__body {
+  position: relative;
+  min-width: 0;
+}
+
+.edu-card__degree {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.edu-card h3 {
+  margin-top: 4px;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.edu-card__school {
+  margin-top: 6px;
+  color: var(--text-2);
+}
+
+.edu-card__years {
+  position: relative;
+  grid-column: 2;
+  justify-self: start;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+@media (max-width: 400px) {
+  .edu {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
    Contact
    ========================================================================== */
 .contact {
@@ -1278,7 +1729,7 @@ main,
 
 .contact__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 14px;
   margin-top: 28px;
 }
@@ -1427,11 +1878,13 @@ main,
 /* ==========================================================================
    Small screens
    ========================================================================== */
-@media (max-width: 420px) {
-  .nav__links a {
-    padding: 8px 10px;
+@media (max-width: 900px) {
+  .nav__links {
+    display: none;
   }
+}
 
+@media (max-width: 420px) {
   .nav__actions {
     gap: 0;
   }
@@ -1461,7 +1914,8 @@ main,
   }
 
   .js .reveal,
-  .js .job__list li {
+  .js .job__list li,
+  .js .chips li {
     opacity: 1;
     transform: none;
   }
@@ -1489,6 +1943,11 @@ main,
 
   @page {
     margin: 14mm;
+  }
+
+  /* Scale every rem-based size down so the CV fits on fewer pages. */
+  html {
+    font-size: 12px;
   }
 
   body {
@@ -1520,10 +1979,16 @@ main,
   .reveal,
   .line__inner,
   .job__list li,
+  .chips li,
+  .highlight__icon,
   .card {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+  }
+
+  .highlight::after {
+    display: none;
   }
 
   .gradient-text,
@@ -1602,7 +2067,7 @@ main,
 
   .card,
   .contact {
-    padding: 14px 16px;
+    padding: 10px 14px;
     border-radius: 10px;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -1630,5 +2095,214 @@ main,
   .footer {
     margin-top: 20px;
     padding: 10px 0 0;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .about__text p {
+    font-size: 11.5px;
+    line-height: 1.55;
+  }
+
+  .about__text p + p {
+    margin-top: 8px;
+  }
+
+  /* Quick facts become one row of four columns under the About text. */
+  .facts.card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 8px 14px;
+  }
+
+  .facts__row {
+    padding: 0 12px 0 0;
+  }
+
+  .facts__row + .facts__row {
+    padding-left: 12px;
+    border-top: 0;
+    border-left: 1px solid var(--border);
+  }
+
+  .facts dt {
+    font-size: 9.5px;
+  }
+
+  .facts dd {
+    font-size: 11px;
+  }
+
+  /* Technologies are listed under Skills, so per-job tags are left off paper. */
+  .tags {
+    display: none;
+  }
+
+  /* Chip backgrounds are transparent on paper, so drop their padding too. */
+  .job__duration:not(:empty),
+  .edu-card__years {
+    padding: 0;
+  }
+
+  .timeline__list {
+    gap: 8px !important;
+  }
+
+  /* Long cards may split across pages; keep each role together instead. */
+  .timeline .card {
+    break-inside: auto;
+  }
+
+  .skills__item,
+  .edu__item,
+  .highlight,
+  .tags,
+  .job__list li {
+    break-inside: avoid;
+  }
+
+  .role__title,
+  .job__period {
+    break-after: avoid;
+  }
+
+  .job__list li,
+  .highlight p {
+    font-size: 11.5px;
+  }
+
+  .roles {
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .highlight {
+    margin-top: 8px;
+    padding: 7px 12px 7px 38px;
+  }
+
+  .highlight__icon {
+    top: 10px;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Skills print as compact labelled rows instead of cards. */
+  .skills {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .skills__item--wide {
+    grid-column: auto;
+  }
+
+  .skills .skill-card.card {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    align-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .skill-card__head {
+    margin: 0;
+  }
+
+  .skill-card__head h3 {
+    font-size: 12px;
+  }
+
+  .skill-card__icon {
+    display: none;
+  }
+
+  .skill-card__icon,
+  .edu-card__icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+  }
+
+  .skill-card__icon svg,
+  .edu-card__icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .chips {
+    gap: 5px;
+  }
+
+  .chips li {
+    padding: 2px 8px;
+    font-size: 11px;
+  }
+
+  .edu {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* Contact details go in the header on paper, so the section is dropped. */
+  .print-only {
+    display: block;
+  }
+
+  .hero__contact {
+    margin-top: 6px;
+    color: var(--text-2);
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  #contact {
+    display: none;
+  }
+
+  .job__period,
+  .job__meta {
+    font-size: 11px;
+  }
+
+  .job__list {
+    gap: 3px;
+    margin-top: 8px;
+  }
+
+  .job__subhead {
+    margin-top: 10px;
+    font-size: 10px;
+  }
+
+  .tags {
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .tags li {
+    padding: 2px 8px;
+    font-size: 10.5px;
+  }
+
+  .badge {
+    padding: 3px 9px;
+    font-size: 10px;
+  }
+
+  .logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+  }
+
+  .job__header {
+    gap: 12px;
   }
 }

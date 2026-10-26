@@ -3,16 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Radu-Adrian Adăscăliței · Software Developer</title>
-  <meta name="description" content="Radu-Adrian Adăscăliței – software developer building software for banking and healthcare since 2016." />
+  <title
+    data-en-text="Radu-Adrian Adăscăliței · Frontend Chapter Lead"
+    data-ro-text="Radu-Adrian Adăscăliței · Frontend Chapter Lead">Radu-Adrian Adăscăliței · Frontend Chapter Lead</title>
+  <meta name="description"
+    content="Radu-Adrian Adăscăliței – Frontend Chapter Lead at ING Bank in Bucharest. Lit, Web Components and banking software since 2016."
+    data-en-content="Radu-Adrian Adăscăliței – Frontend Chapter Lead at ING Bank in Bucharest. Lit, Web Components and banking software since 2016."
+    data-ro-content="Radu-Adrian Adăscăliței – Frontend Chapter Lead la ING Bank, în București. Lit, Web Components și software bancar din 2016." />
   <meta name="theme-color" content="#0b1412" media="(prefers-color-scheme: dark)" />
   <meta name="theme-color" content="#f4f7f6" media="(prefers-color-scheme: light)" />
 
   <meta property="og:type" content="profile" />
-  <meta property="og:title" content="Radu-Adrian Adăscăliței · Software Developer" />
-  <meta property="og:description" content="Software developer building software for banking and healthcare since 2016." />
+  <meta property="og:title" content="Radu-Adrian Adăscăliței · Frontend Chapter Lead" />
+  <meta property="og:description" content="Frontend Chapter Lead at ING Bank. Lit, Web Components and banking software since 2016." />
   <meta property="og:url" content="https://adascaliteiradu.github.io/" />
   <meta property="og:image" content="https://adascaliteiradu.github.io/assets/profile.jpg" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="ro_RO" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -23,15 +30,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Apply the saved theme and enable JS-only styles before first paint to avoid a flash. -->
+  <!-- Apply the saved theme/language and enable JS-only styles before first paint to avoid a flash. -->
   <script>
     (function () {
       var root = document.documentElement;
       root.classList.add("js");
+      var lang = null;
       try {
         var theme = localStorage.getItem("theme");
         if (theme === "light" || theme === "dark") root.setAttribute("data-theme", theme);
+        lang = localStorage.getItem("lang");
       } catch (e) {}
+      var param = new URLSearchParams(location.search).get("lang");
+      if (param === "en" || param === "ro") lang = param;
+      if (lang !== "en" && lang !== "ro") {
+        lang = /^ro\b/i.test(navigator.language || "") ? "ro" : "en";
+      }
+      root.setAttribute("lang", lang);
     })();
   </script>
   <link rel="stylesheet" href="/assets/style.css" />
@@ -48,18 +63,31 @@
   </div>
 
   <header class="nav" id="nav">
-    <a class="nav__brand" href="#top" aria-label="Back to top">
+    <a class="nav__brand" href="#top" aria-label="Back to top" data-en-aria-label="Back to top" data-ro-aria-label="Înapoi sus">
       <span class="nav__mark">RA</span>
     </a>
-    <nav class="nav__links" aria-label="Sections">
-      <a href="#experience" data-section="experience">Experience</a>
+    <nav class="nav__links" aria-label="Sections" data-en-aria-label="Sections" data-ro-aria-label="Secțiuni">
+      <a href="#about" data-section="about"><span lang="en">About</span><span lang="ro">Despre</span></a>
+      <a href="#experience" data-section="experience"><span lang="en">Experience</span><span lang="ro">Experiență</span></a>
+      <a href="#skills" data-section="skills"><span lang="en">Skills</span><span lang="ro">Competențe</span></a>
+      <a href="#education" data-section="education"><span lang="en">Education</span><span lang="ro">Educație</span></a>
       <a href="#contact" data-section="contact">Contact</a>
     </nav>
     <div class="nav__actions">
-      <button class="icon-btn" type="button" id="print-btn" aria-label="Print or save as PDF" title="Print / Save as PDF">
+      <button class="lang-toggle" type="button" id="lang-btn"
+        aria-label="Switch to Romanian" data-en-aria-label="Switch to Romanian" data-ro-aria-label="Schimbă în engleză"
+        title="Română / English">
+        <span class="lang-toggle__opt" data-opt="en">EN</span>
+        <span class="lang-toggle__opt" data-opt="ro">RO</span>
+      </button>
+      <button class="icon-btn" type="button" id="print-btn"
+        aria-label="Print or save as PDF" data-en-aria-label="Print or save as PDF" data-ro-aria-label="Printează sau salvează ca PDF"
+        title="Print / Save as PDF" data-en-title="Print / Save as PDF" data-ro-title="Printează / Salvează ca PDF">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>
       </button>
-      <button class="icon-btn theme-toggle" type="button" id="theme-btn" aria-label="Toggle dark mode" title="Toggle theme">
+      <button class="icon-btn theme-toggle" type="button" id="theme-btn"
+        aria-label="Toggle dark mode" data-en-aria-label="Toggle dark mode" data-ro-aria-label="Comută tema întunecată"
+        title="Toggle theme" data-en-title="Toggle theme" data-ro-title="Schimbă tema">
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
@@ -76,71 +104,162 @@
           <img
             src="/assets/profile.jpg"
             alt="Portrait of Radu-Adrian Adăscăliței"
+            data-en-alt="Portrait of Radu-Adrian Adăscăliței"
+            data-ro-alt="Portretul lui Radu-Adrian Adăscăliței"
             width="512"
             height="512"
             onerror="this.remove()" />
         </div>
-        <span class="status-pill"><span class="status-dot"></span>Software developer @ ING Bank</span>
+        <div class="hero__pills">
+          <span class="status-pill"><span class="status-dot"></span>Frontend Chapter Lead @ ING Bank</span>
+          <span class="status-pill">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span lang="en">Bucharest, Romania</span><span lang="ro">București, România</span>
+          </span>
+        </div>
       </div>
 
       <div class="hero__body">
-        <p class="eyebrow intro" style="--d: 1">Hello, I'm</p>
+        <p class="eyebrow intro" style="--d: 1"><span lang="en">Hello, I'm</span><span lang="ro">Salut, eu sunt</span></p>
         <h1 class="hero__name">
           <span class="line"><span class="line__inner" style="--d: 2">Radu-Adrian</span></span>
           <span class="line"><span class="line__inner gradient-text" style="--d: 3">Adăscăliței</span></span>
         </h1>
         <p class="hero__role intro" style="--d: 4">
-          <span class="sr-only">Software developer · .NET &amp; JavaScript · banking and healthcare software</span>
-          <span aria-hidden="true"><span class="typed" id="typed" data-words='["Software Developer", ".NET &amp; JavaScript", "Banking software", "Healthcare solutions"]'>Software Developer</span><span class="caret"></span></span>
+          <span class="sr-only" lang="en">Frontend Chapter Lead · Lit &amp; Web Components · banking software</span>
+          <span class="sr-only" lang="ro">Frontend Chapter Lead · Lit &amp; Web Components · software bancar</span>
+          <span aria-hidden="true"><span class="typed" id="typed"
+            data-words-en='["Frontend Chapter Lead", "Lit &amp; Web Components", "Frontend architecture", "Banking software"]'
+            data-words-ro='["Frontend Chapter Lead", "Lit &amp; Web Components", "Arhitectură frontend", "Software bancar"]'>Frontend Chapter Lead</span><span class="caret"></span></span>
         </p>
         <p class="hero__summary intro" style="--d: 5">
-          Building software for banking and healthcare since 2016 – from database design and application
-          architecture to shipping and optimizing production apps.
+          <span lang="en">I lead frontend engineers across three squads at ING Bank and build web applications for
+            retail and business online banking with Lit and Web Components.</span>
+          <span lang="ro">Coordonez developeri frontend din trei squad-uri la ING Bank și construiesc aplicații web
+            pentru online banking (retail și business) cu Lit și Web Components.</span>
+        </p>
+        <p class="print-only hero__contact">
+          adascalitei.radu@live.com · linkedin.com/in/radu-adrian-adascalitei ·
+          <span lang="en">Bucharest, Romania</span><span lang="ro">București, România</span>
         </p>
         <div class="hero__cta intro" style="--d: 6">
           <a class="btn btn--primary" href="mailto:adascalitei.radu@live.com">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-            Email me
+            <span lang="en">Email me</span><span lang="ro">Scrie-mi</span>
           </a>
           <a class="btn btn--ghost" href="https://www.linkedin.com/in/radu-adrian-adascalitei/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true" class="fill"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
             LinkedIn
           </a>
+          <button class="btn btn--ghost" type="button" data-print>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg>
+            <span lang="en">CV as PDF</span><span lang="ro">CV în PDF</span>
+          </button>
         </div>
       </div>
 
-      <a class="scroll-cue intro" style="--d: 8" href="#experience" aria-label="Scroll to experience">
+      <a class="scroll-cue intro" style="--d: 8" href="#about"
+        aria-label="Scroll to about" data-en-aria-label="Scroll to about" data-ro-aria-label="Mergi la secțiunea Despre">
         <span class="scroll-cue__mouse"><span></span></span>
       </a>
     </section>
 
     <!-- Stats -->
-    <section class="stats" aria-label="At a glance">
+    <section class="stats" aria-label="At a glance" data-en-aria-label="At a glance" data-ro-aria-label="Pe scurt">
       <div class="stat reveal">
         <span class="stat__value"><span data-count data-since="2016-04">10</span>+</span>
-        <span class="stat__label">Years of experience</span>
+        <span class="stat__label"><span lang="en">Years of experience</span><span lang="ro">Ani de experiență</span></span>
       </div>
       <div class="stat reveal" style="--stagger: 1">
         <span class="stat__value"><span data-count data-since="2018-05">8</span>+</span>
-        <span class="stat__label">Years in banking</span>
+        <span class="stat__label"><span lang="en">Years in banking</span><span lang="ro">Ani în banking</span></span>
       </div>
       <div class="stat reveal" style="--stagger: 2">
         <span class="stat__value"><span data-count="3">3</span></span>
-        <span class="stat__label">Companies</span>
+        <span class="stat__label"><span lang="en">Squads in my chapter</span><span lang="ro">Squad-uri în chapter</span></span>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+      <div class="section__head reveal">
+        <span class="section__index">01</span>
+        <h2 class="section__title"><span lang="en">About me</span><span lang="ro">Despre mine</span></h2>
+      </div>
+
+      <div class="about">
+        <div class="about__text reveal">
+          <div lang="en">
+            <p>
+              I'm a <strong>Frontend Chapter Lead at ING Bank</strong> in Bucharest, with
+              <span data-years-since="2016-04">10</span>+ years in software development –
+              <span data-years-since="2018-05">8</span>+ of them in banking. I lead frontend engineers across three
+              squads, keep the bank's projects moving day to day and plan delivery timelines together with
+              stakeholders.
+            </p>
+            <p>
+              My focus is modern, framework-agnostic frontend architecture built on <strong>Lit and Web
+              Components</strong>. I delivered a phased migration from Angular to Web Components with no impact on
+              retail and business online banking customers or on the bank's internal tools. Before banking, I built
+              software for the healthcare industry with .NET and JavaScript.
+            </p>
+          </div>
+          <div lang="ro">
+            <p>
+              Sunt <strong>Frontend Chapter Lead la ING Bank</strong>, în București, cu peste
+              <span data-years-since="2016-04">10</span> ani de experiență în dezvoltare software, dintre care peste
+              <span data-years-since="2018-05">8</span> în domeniul bancar. Coordonez developeri frontend din trei
+              squad-uri, asigur continuitatea proiectelor băncii de la o zi la alta și planific termenele de livrare
+              împreună cu stakeholderii.
+            </p>
+            <p>
+              Mă concentrez pe o arhitectură frontend modernă, independentă de framework, construită pe
+              <strong>Lit și Web Components</strong>. Am livrat o migrare etapizată din Angular către Web Components,
+              fără niciun impact asupra clienților de online banking (retail și business) sau asupra aplicațiilor
+              interne ale băncii. Înainte de banking am dezvoltat software pentru domeniul medical, cu .NET și
+              JavaScript.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal" style="--stagger: 1">
+          <dl class="facts card" data-tilt>
+            <div class="facts__row">
+              <dt><span lang="en">Current role</span><span lang="ro">Rol actual</span></dt>
+              <dd>Frontend Chapter Lead · ING Bank</dd>
+            </div>
+            <div class="facts__row">
+              <dt><span lang="en">Location</span><span lang="ro">Locație</span></dt>
+              <dd><span lang="en">Bucharest, Romania</span><span lang="ro">București, România</span></dd>
+            </div>
+            <div class="facts__row">
+              <dt><span lang="en">Focus</span><span lang="ro">Focus</span></dt>
+              <dd><span lang="en">Lit, Web Components, frontend architecture</span><span lang="ro">Lit, Web Components, arhitectură frontend</span></dd>
+            </div>
+            <div class="facts__row">
+              <dt><span lang="en">Languages</span><span lang="ro">Limbi</span></dt>
+              <dd>
+                <span lang="en">Romanian (native) · English (B2)</span>
+                <span lang="ro">Română (nativ) · Engleză (B2)</span>
+              </dd>
+            </div>
+          </dl>
+        </div>
       </div>
     </section>
 
     <!-- Experience -->
     <section class="section" id="experience">
       <div class="section__head reveal">
-        <span class="section__index">01</span>
-        <h2 class="section__title">Work experience</h2>
+        <span class="section__index">02</span>
+        <h2 class="section__title"><span lang="en">Work experience</span><span lang="ro">Experiență profesională</span></h2>
       </div>
 
       <div class="timeline" id="timeline">
         <div class="timeline__track" aria-hidden="true"><span class="timeline__fill"></span></div>
         <ol class="timeline__list">
-          <li class="job reveal" data-start="2020-08">
+          <!-- ING Bank: two roles -->
+          <li class="job reveal">
             <span class="job__node job__node--live" aria-hidden="true"></span>
             <article class="card" data-tilt>
               <div class="card__glow" aria-hidden="true"></div>
@@ -150,19 +269,89 @@
                   <img src="/assets/ing.png" alt="ING logo" loading="lazy" onerror="this.remove()" />
                 </div>
                 <div class="job__title">
-                  <h3>Software developer</h3>
-                  <p class="job__company">ING Bank</p>
+                  <h3>ING Bank</h3>
+                  <p class="job__meta">
+                    <span lang="en">Bucharest, Romania</span><span lang="ro">București, România</span>
+                    <span class="job__duration" data-duration data-start="2020-08"></span>
+                  </p>
                 </div>
-                <span class="badge badge--live"><span class="status-dot"></span>Current</span>
+                <span class="badge badge--live"><span class="status-dot"></span><span lang="en">Current</span><span lang="ro">Actual</span></span>
               </header>
-              <p class="job__period">
-                <time datetime="2020-08">August 2020</time> – <span>Present</span>
-                <span class="job__duration" data-duration></span>
-              </p>
+
+              <ol class="roles">
+                <li class="role">
+                  <h4 class="role__title">Frontend Chapter Lead</h4>
+                  <p class="job__period">
+                    <time datetime="2022-12">December 2022</time> – <span lang="en">Present</span><span lang="ro">Prezent</span>
+                    <span class="job__duration" data-duration data-start="2022-12"></span>
+                  </p>
+                  <ul class="job__list" lang="en">
+                    <li>Lead frontend engineers embedded in three different squads</li>
+                    <li>Ensure the continuity and delivery of the bank's projects, day to day</li>
+                    <li>Plan delivery timelines together with stakeholders</li>
+                    <li>Run recruitment for the chapter when needed</li>
+                    <li>Collaborate with teams across ING Group</li>
+                  </ul>
+                  <ul class="job__list" lang="ro">
+                    <li>Coordonez developeri frontend din trei squad-uri diferite</li>
+                    <li>Asigur continuitatea și implementarea proiectelor băncii, zi de zi</li>
+                    <li>Planific termenele de livrare împreună cu stakeholderii</li>
+                    <li>Mă ocup de recrutare atunci când este nevoie</li>
+                    <li>Colaborez cu echipe din grupul ING</li>
+                  </ul>
+                  <div class="highlight">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="highlight__icon"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                    <p class="highlight__label"><span lang="en">Key achievement</span><span lang="ro">Realizare cheie</span></p>
+                    <p lang="en">
+                      Migrated a solution from Angular to Web Components in phases, with no impact on retail and
+                      business online banking customers or on the internal BPM solutions and front-office,
+                      back-office and call-center tools that rely on it.
+                    </p>
+                    <p lang="ro">
+                      Migrarea etapizată a unei soluții din Angular către Web Components, fără impact asupra
+                      clienților de online banking (retail și business) și asupra soluțiilor interne BPM și a
+                      tool-urilor folosite în front office, back office și call center.
+                    </p>
+                  </div>
+                  <ul class="tags" aria-label="Technologies" data-en-aria-label="Technologies" data-ro-aria-label="Tehnologii">
+                    <li>Lit</li>
+                    <li>Web Components</li>
+                    <li>Angular</li>
+                    <li>Azure DevOps Pipelines</li>
+                    <li>Azure DevOps Boards</li>
+                  </ul>
+                </li>
+
+                <li class="role">
+                  <h4 class="role__title">Software Developer</h4>
+                  <p class="job__period">
+                    <time datetime="2020-08">August 2020</time> – <time datetime="2022-12">December 2022</time>
+                    <span class="job__duration" data-duration data-start="2020-08" data-end="2022-12"></span>
+                  </p>
+                  <div class="highlight">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" class="highlight__icon"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
+                    <p class="highlight__label"><span lang="en">Key achievement</span><span lang="ro">Realizare cheie</span></p>
+                    <p lang="en">
+                      Migrated and unified three applications – front office, back office and call center – into a
+                      single application built with .NET and Lit.
+                    </p>
+                    <p lang="ro">
+                      Am migrat și unificat trei aplicații – front office, back office și call center – într-o singură
+                      aplicație construită cu .NET și Lit.
+                    </p>
+                  </div>
+                  <ul class="tags" aria-label="Technologies" data-en-aria-label="Technologies" data-ro-aria-label="Tehnologii">
+                    <li>.NET</li>
+                    <li>Lit</li>
+                    <li>Web Components</li>
+                  </ul>
+                </li>
+              </ol>
             </article>
           </li>
 
-          <li class="job reveal" data-start="2018-05" data-end="2020-08">
+          <!-- Cegeka -->
+          <li class="job reveal">
             <span class="job__node" aria-hidden="true"></span>
             <article class="card" data-tilt>
               <div class="card__glow" aria-hidden="true"></div>
@@ -172,19 +361,21 @@
                   <img src="/assets/cegeka.png" alt="Cegeka logo" loading="lazy" onerror="this.remove()" />
                 </div>
                 <div class="job__title">
-                  <h3>Software developer</h3>
+                  <h3>Software Developer</h3>
                   <p class="job__company">Cegeka</p>
                 </div>
               </header>
               <p class="job__period">
                 <time datetime="2018-05">May 2018</time> – <time datetime="2020-08">August 2020</time>
-                <span class="job__duration" data-duration></span>
+                <span class="job__duration" data-duration data-start="2018-05" data-end="2020-08"></span>
               </p>
-              <p class="job__details">Outsourced to ING Bank Romania.</p>
+              <p class="job__details" lang="en">Outsourced to ING Bank Romania.</p>
+              <p class="job__details" lang="ro">În regim de outsourcing pentru ING Bank România.</p>
             </article>
           </li>
 
-          <li class="job reveal" data-start="2016-04" data-end="2018-05">
+          <!-- Softeh Plus -->
+          <li class="job reveal">
             <span class="job__node" aria-hidden="true"></span>
             <article class="card" data-tilt>
               <div class="card__glow" aria-hidden="true"></div>
@@ -194,25 +385,33 @@
                   <img src="https://www.softeh.ro/wp-content/uploads/2020/04/SoftehLogo-WB-Blue-1.png" alt="Softeh logo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()" />
                 </div>
                 <div class="job__title">
-                  <h3>Software developer</h3>
+                  <h3>Software Developer</h3>
                   <p class="job__company">Softeh Plus</p>
                 </div>
               </header>
               <p class="job__period">
                 <time datetime="2016-04">April 2016</time> – <time datetime="2018-05">May 2018</time>
-                <span class="job__duration" data-duration></span>
+                <span class="job__duration" data-duration data-start="2016-04" data-end="2018-05"></span>
               </p>
-              <h4 class="job__subhead">Responsibilities</h4>
-              <ul class="job__list">
-                <li>Design and develop new solutions for the medical industry</li>
-                <li>Develop applications using .NET Framework and JavaScript</li>
-                <li>Design database structure</li>
-                <li>Design application architecture</li>
-                <li>Optimize existing applications</li>
+              <h4 class="job__subhead"><span lang="en">Responsibilities</span><span lang="ro">Responsabilități</span></h4>
+              <ul class="job__list" lang="en">
+                <li>Designed and developed new solutions for the medical industry</li>
+                <li>Developed applications using .NET Framework and JavaScript</li>
+                <li>Designed database structures</li>
+                <li>Designed application architecture</li>
+                <li>Optimized existing applications</li>
               </ul>
-              <ul class="tags" aria-label="Technologies">
+              <ul class="job__list" lang="ro">
+                <li>Am proiectat și dezvoltat soluții noi pentru industria medicală</li>
+                <li>Am dezvoltat aplicații cu .NET Framework și JavaScript</li>
+                <li>Am proiectat structura bazelor de date</li>
+                <li>Am proiectat arhitectura aplicațiilor</li>
+                <li>Am optimizat aplicațiile existente</li>
+              </ul>
+              <ul class="tags" aria-label="Technologies" data-en-aria-label="Technologies" data-ro-aria-label="Tehnologii">
                 <li>.NET Framework</li>
                 <li>JavaScript</li>
+                <li>SQL</li>
               </ul>
             </article>
           </li>
@@ -220,16 +419,144 @@
       </div>
     </section>
 
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <div class="section__head reveal">
+        <span class="section__index">03</span>
+        <h2 class="section__title"><span lang="en">Skills</span><span lang="ro">Competențe</span></h2>
+      </div>
+
+      <div class="skills">
+        <div class="skills__item reveal">
+          <article class="skill-card card" data-tilt>
+            <div class="card__glow" aria-hidden="true"></div>
+            <header class="skill-card__head">
+              <span class="skill-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+              <h3>Frontend</h3>
+            </header>
+            <ul class="chips">
+              <li>Lit</li>
+              <li>Web Components</li>
+              <li>JavaScript</li>
+              <li>React</li>
+              <li>Angular</li>
+              <li>HTML &amp; CSS</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="skills__item reveal" style="--stagger: 1">
+          <article class="skill-card card" data-tilt>
+            <div class="card__glow" aria-hidden="true"></div>
+            <header class="skill-card__head">
+              <span class="skill-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/></svg></span>
+              <h3><span lang="en">Backend &amp; data</span><span lang="ro">Backend și date</span></h3>
+            </header>
+            <ul class="chips">
+              <li>.NET</li>
+              <li>C#</li>
+              <li>Node.js</li>
+              <li>SQL</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="skills__item reveal" style="--stagger: 2">
+          <article class="skill-card card" data-tilt>
+            <div class="card__glow" aria-hidden="true"></div>
+            <header class="skill-card__head">
+              <span class="skill-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+              <h3><span lang="en">Quality</span><span lang="ro">Calitate</span></h3>
+            </header>
+            <ul class="chips">
+              <li>Playwright</li>
+              <li><span lang="en">Frontend testing</span><span lang="ro">Testare frontend</span></li>
+              <li><span lang="en">Accessibility (a11y)</span><span lang="ro">Accesibilitate (a11y)</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="skills__item reveal">
+          <article class="skill-card card" data-tilt>
+            <div class="card__glow" aria-hidden="true"></div>
+            <header class="skill-card__head">
+              <span class="skill-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M6 9v3a3 3 0 0 0 3 3h6M18 15V9"/></svg></span>
+              <h3><span lang="en">Delivery &amp; tooling</span><span lang="ro">Livrare și unelte</span></h3>
+            </header>
+            <ul class="chips">
+              <li>Azure DevOps Pipelines</li>
+              <li>Azure DevOps Boards</li>
+              <li><span lang="en">Phased migrations</span><span lang="ro">Migrări etapizate</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="skills__item skills__item--wide reveal" style="--stagger: 1">
+          <article class="skill-card card" data-tilt>
+            <div class="card__glow" aria-hidden="true"></div>
+            <header class="skill-card__head">
+              <span class="skill-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+              <h3>Leadership</h3>
+            </header>
+            <ul class="chips">
+              <li><span lang="en">Chapter leadership</span><span lang="ro">Conducerea unui chapter</span></li>
+              <li><span lang="en">Recruitment</span><span lang="ro">Recrutare</span></li>
+              <li>Stakeholder management</li>
+              <li><span lang="en">Delivery planning</span><span lang="ro">Planificarea livrărilor</span></li>
+              <li><span lang="en">Cross-team collaboration</span><span lang="ro">Colaborare între echipe</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section" id="education">
+      <div class="section__head reveal">
+        <span class="section__index">04</span>
+        <h2 class="section__title"><span lang="en">Education</span><span lang="ro">Educație</span></h2>
+      </div>
+
+      <div class="edu">
+        <div class="edu__item reveal">
+          <article class="edu-card card" data-tilt>
+            <div class="card__glow" aria-hidden="true"></div>
+            <span class="edu-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+            <div class="edu-card__body">
+              <p class="edu-card__degree"><span lang="en">Master's degree</span><span lang="ro">Master</span></p>
+              <h3><span lang="en">E-Government</span><span lang="ro">E-Guvernare</span></h3>
+              <p class="edu-card__school"><span lang="en">Politehnica University of Bucharest</span><span lang="ro">Universitatea Politehnica din București</span></p>
+            </div>
+            <span class="edu-card__years">2018 – 2020</span>
+          </article>
+        </div>
+
+        <div class="edu__item reveal" style="--stagger: 1">
+          <article class="edu-card card" data-tilt>
+            <div class="card__glow" aria-hidden="true"></div>
+            <span class="edu-card__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+            <div class="edu-card__body">
+              <p class="edu-card__degree"><span lang="en">Bachelor's degree</span><span lang="ro">Licență</span></p>
+              <h3><span lang="en">Computer Science and Engineering</span><span lang="ro">Calculatoare și Tehnologia Informației</span></h3>
+              <p class="edu-card__school"><span lang="en">Politehnica University of Bucharest</span><span lang="ro">Universitatea Politehnica din București</span></p>
+            </div>
+            <span class="edu-card__years">2013 – 2017</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact -->
     <section class="section" id="contact">
       <div class="section__head reveal">
-        <span class="section__index">02</span>
-        <h2 class="section__title">Get in touch</h2>
+        <span class="section__index">05</span>
+        <h2 class="section__title"><span lang="en">Get in touch</span><span lang="ro">Contact</span></h2>
       </div>
 
       <div class="contact reveal">
         <p class="contact__lead">
-          Open to a conversation – the fastest way to reach me is by email or on LinkedIn.
+          <span lang="en">Open to a conversation – the fastest way to reach me is by email or on LinkedIn.</span>
+          <span lang="ro">Hai să vorbim – cel mai rapid mă găsești pe email sau pe LinkedIn.</span>
         </p>
         <div class="contact__grid">
           <div class="contact-card">
@@ -240,7 +567,9 @@
               <span class="contact-card__label">Email</span>
               <a href="mailto:adascalitei.radu@live.com">adascalitei.radu@live.com</a>
             </div>
-            <button class="icon-btn copy-btn" type="button" data-copy="adascalitei.radu@live.com" aria-label="Copy email address" title="Copy email">
+            <button class="icon-btn copy-btn" type="button" data-copy="adascalitei.radu@live.com"
+              aria-label="Copy email address" data-en-aria-label="Copy email address" data-ro-aria-label="Copiază adresa de email"
+              title="Copy email" data-en-title="Copy email" data-ro-title="Copiază emailul">
               <svg class="icon-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               <svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
             </button>
@@ -262,7 +591,7 @@
 
   <footer class="footer">
     <p>© <span id="year">2026</span> Radu-Adrian Adăscăliței</p>
-    <a href="#top" class="footer__top">Back to top ↑</a>
+    <a href="#top" class="footer__top"><span lang="en">Back to top</span><span lang="ro">Înapoi sus</span> ↑</a>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
